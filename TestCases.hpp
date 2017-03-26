@@ -1,0 +1,8 @@
+//
+// Created by Nathan on 3/26/2017.
+//
+
+#ifndef RECURSIONEX_TESTCASES_HPP
+#define RECURSIONEX_TESTCASES_HPP
+
+#endif //RECURSIONEX_TESTCASES_HPP
