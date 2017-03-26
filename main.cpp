@@ -6,7 +6,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
-#include "TestCases.hpp"
+//#include "TestCases.hpp"
 
 std::string collapseSpaces(std::string s);
 std::vector<std::string> split(std::string s);
@@ -19,10 +19,17 @@ void quickSort(std::vector<int>& data, int start, int end);
 int main()
 {
     //TestCases::runTestCases();
-    std::vector<int> *data = new std::vector<int> {1,2,3,4,5,6,7,8,9};
+
+   /* std::vector<int> *data = new std::vector<int> {1,2,3,4,5,6,7,8,9};
     unsigned int position = 0;
-    int num = vectorSum(*data, position);
-    std::cout << num << std::endl;
+    std::cout << vectorSum(*data, position) << std::endl;
+    return 0;*/
+
+
+    std::string value = "radar";
+    bool pal = isPalindrome(value, 0, value.length() - 1);
+    std::cout << pal << std::endl;
+
 
     return 0;
 }
@@ -60,10 +67,6 @@ std::vector<std::string> split(std::string s)
     } while (is);
 
     return words;
-}
-
-bool isPalindrome(std::string word, int start, int end)
-{
 }
 
 // ------------------------------------------------------------------
@@ -119,4 +122,30 @@ long vectorSum(const std::vector<int>& data, unsigned int position)
 
     long num = data[position];
     return num + vectorSum(data, position + 1);
+}
+
+bool isPalindrome(std::string word, int start, int end)
+{
+    if(start == end)
+    {
+        return true;
+    }
+    if(start > end)
+    {
+        std::cout << "'start' was greater than 'end'" << std::endl;
+        return false;
+    }
+    if(word.empty())
+    {
+        std::cout << "string 'word' was empty" << std::endl;
+        return false;
+    }
+
+    if(word[start] != word[end])
+    {
+        return false;
+    }
+
+    bool pal = isPalindrome(word, start + 1, end - 1);
+    return pal;
 }
