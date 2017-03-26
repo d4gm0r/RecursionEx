@@ -26,9 +26,9 @@ int main()
     return 0;*/
 
 
-    std::string value = "radar";
+    /*std::string value = "radar";
     bool pal = isPalindrome(value, 0, value.length() - 1);
-    std::cout << pal << std::endl;
+    std::cout << pal << std::endl;*/
 
 
     return 0;
@@ -126,22 +126,20 @@ long vectorSum(const std::vector<int>& data, unsigned int position)
 
 bool isPalindrome(std::string word, int start, int end)
 {
-    if(start == end)
+    if (start == end)
+    {
+       return true;
+    }
+    if (start > end)
     {
         return true;
     }
-    if(start > end)
-    {
-        std::cout << "'start' was greater than 'end'" << std::endl;
-        return false;
-    }
-    if(word.empty())
+    if (word.empty())
     {
         std::cout << "string 'word' was empty" << std::endl;
         return false;
     }
-
-    if(word[start] != word[end])
+    if (word[start] != word[end])
     {
         return false;
     }
