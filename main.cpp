@@ -26,9 +26,14 @@ int main()
     return 0;*/
 
 
-    /*std::string value = "radar";
+    /*std::string value = "";
     bool pal = isPalindrome(value, 0, value.length() - 1);
     std::cout << pal << std::endl;*/
+
+    /*std::string input = "you are you";
+    auto words = split(input);	// Split into words
+    bool result = isWordSymmetric(words, 0, words.size() - 1);
+    std::cout << result << std::endl;*/
 
 
     return 0;
@@ -126,6 +131,11 @@ long vectorSum(const std::vector<int>& data, unsigned int position)
 
 bool isPalindrome(std::string word, int start, int end)
 {
+    if (word.empty())
+    {
+        std::cout << "string was empty" << std::endl;
+        return false;
+    }
     if (start == end)
     {
        return true;
@@ -134,11 +144,6 @@ bool isPalindrome(std::string word, int start, int end)
     {
         return true;
     }
-    if (word.empty())
-    {
-        std::cout << "string 'word' was empty" << std::endl;
-        return false;
-    }
     if (word[start] != word[end])
     {
         return false;
@@ -146,4 +151,28 @@ bool isPalindrome(std::string word, int start, int end)
 
     bool pal = isPalindrome(word, start + 1, end - 1);
     return pal;
+}
+
+bool isWordSymmetric(const std::vector<std::string>& words, int start, int end)
+{
+    if (words.empty())
+    {
+        std::cout << "string was empty" << std::endl;
+        return false;
+    }
+    if (start == end)
+    {
+        return true;
+    }
+    if (start > end)
+    {
+        return true;
+    }
+    if (words[start] != words[end])
+    {
+        return false;
+    }
+
+    bool sym = isWordSymmetric(words, start + 1, end - 1);
+    return sym;
 }
