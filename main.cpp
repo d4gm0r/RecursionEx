@@ -15,6 +15,7 @@ bool isWordSymmetric(const std::vector<std::string>& words, int start, int end);
 long vectorSum(const std::vector<int>& data, unsigned int position);
 int vectorMin(const std::vector<int>& data, unsigned int position);
 void quickSort(std::vector<int>& data, int start, int end);
+void selectionSort(std::vector<int>& data);
 
 int main()
 {
@@ -35,6 +36,16 @@ int main()
     bool result = isWordSymmetric(words, 0, words.size() - 1);
     std::cout << result << std::endl;*/
 
+    /*std::vector<int> vec = {5, 3, 2, 4, 5};
+    int actual = vectorMin(vec, 0);
+    std::cout << actual << std::endl;*/
+
+    std::vector<int> input = {5, 4, 3, 2, 1};
+    quickSort(input, 0, input.size() - 1);
+    for(auto in : input)
+    {
+        std::cout << in << std::endl;
+    }
 
     return 0;
 }
@@ -104,13 +115,36 @@ int partition(std::vector<int>& data, int start, int end)
 // Provided quicksort code
 //
 // ------------------------------------------------------------------
+void selectionSort(std::vector<int>& data)
+{
+    for(unsigned int start = 0; start < data.size() - 1; start++)
+    {
+        unsigned int minPos = start;
+
+        for(unsigned int scan = start + 1; scan < data.size(); scan++)
+        {
+            if(data[minPos] > data[scan]){
+                minPos = scan;
+            }
+        }
+        std::swap(data[start], data[minPos]);
+    }
+}
+
 void quickSort(std::vector<int>& data, int start, int end)
 {
     if (start < end)
     {
-        int pivot = partition(data, start, end);
-        quickSort(data, start, pivot - 1);
-        quickSort(data, pivot + 1, end);
+        if ((end - start) < 10)
+        {
+            selectionSort(data);
+        }
+        else
+        {
+            int pivot = partition(data, start, end);
+            quickSort(data, start, pivot - 1);
+            quickSort(data, pivot + 1, end);
+        }
     }
 }
 
@@ -175,4 +209,25 @@ bool isWordSymmetric(const std::vector<std::string>& words, int start, int end)
 
     bool sym = isWordSymmetric(words, start + 1, end - 1);
     return sym;
+}
+
+int vectorMin(const std::vector<int>& data, unsigned int position)
+{
+    if(position >= data.size())
+    {
+        return data[position - 1];
+    }
+    if(data.size() == 0)
+    {
+        return 0;
+    }
+
+    int min = data[position];
+    int num = vectorMin(data, position + 1);
+    if(num < min)
+    {
+        min = num;
+    }
+
+    return min;
 }
