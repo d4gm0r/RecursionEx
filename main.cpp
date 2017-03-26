@@ -18,7 +18,13 @@ void quickSort(std::vector<int>& data, int start, int end);
 
 int main()
 {
-    TestCases::runTestCases();
+    //TestCases::runTestCases();
+    std::vector<int> *data = new std::vector<int> {1,2,3,4,5,6,7,8,9};
+    unsigned int position = 0;
+    int num = vectorSum(*data, position);
+    std::cout << num << std::endl;
+
+    return 0;
 }
 
 // ------------------------------------------------------------------
@@ -98,4 +104,19 @@ void quickSort(std::vector<int>& data, int start, int end)
         quickSort(data, start, pivot - 1);
         quickSort(data, pivot + 1, end);
     }
+}
+
+long vectorSum(const std::vector<int>& data, unsigned int position)
+{
+    if(position >= data.size())
+    {
+        return 0;
+    }
+    if(data.size() == 0)
+    {
+        return 0;
+    }
+
+    long num = data[position];
+    return num + vectorSum(data, position + 1);
 }
