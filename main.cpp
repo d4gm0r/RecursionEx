@@ -6,7 +6,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
-//#include "TestCases.hpp"
+#include "TestCases.hpp"
 
 std::string collapseSpaces(std::string s);
 std::vector<std::string> split(std::string s);
@@ -19,9 +19,9 @@ void selectionSort(std::vector<int>& data);
 
 int main()
 {
-    //TestCases::runTestCases();
+    TestCases::runTestCases();
 
-   /* std::vector<int> *data = new std::vector<int> {1,2,3,4,5,6,7,8,9};
+   /*std::vector<int> *data = new std::vector<int> {1,2,3,4,5,6,7,8,9};
     unsigned int position = 0;
     std::cout << vectorSum(*data, position) << std::endl;
     return 0;*/
@@ -39,13 +39,13 @@ int main()
     /*std::vector<int> vec = {5, 3, 2, 4, 5};
     int actual = vectorMin(vec, 0);
     std::cout << actual << std::endl;*/
-
-    std::vector<int> input = {5, 4, 3, 2, 1};
+/*
+    std::vector<int> input = {5, 4, 3, 2, 1, 6, 7, 8, 9, 2, 4, 3, 1};
     quickSort(input, 0, input.size() - 1);
     for(auto in : input)
     {
         std::cout << in << std::endl;
-    }
+    }*/
 
     return 0;
 }
@@ -115,13 +115,13 @@ int partition(std::vector<int>& data, int start, int end)
 // Provided quicksort code
 //
 // ------------------------------------------------------------------
-void selectionSort(std::vector<int>& data)
+void selectionSort(std::vector<int>& data, int start, int end)
 {
-    for(unsigned int start = 0; start < data.size() - 1; start++)
+    for(start; start < end - 1; start++)
     {
-        unsigned int minPos = start;
+        int minPos = start;
 
-        for(unsigned int scan = start + 1; scan < data.size(); scan++)
+        for(int scan = start + 1; scan < end; scan++)
         {
             if(data[minPos] > data[scan]){
                 minPos = scan;
@@ -135,9 +135,9 @@ void quickSort(std::vector<int>& data, int start, int end)
 {
     if (start < end)
     {
-        if ((end - start) < 10)
+        if ((end - start) <= 10)
         {
-            selectionSort(data);
+            selectionSort(data, start, end);
         }
         else
         {
