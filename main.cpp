@@ -8,6 +8,11 @@
 #include <ctime>
 #include "TestCases.hpp"
 
+//
+// Nathan Larsen - A01532780
+// Assignment 6 - Recursive Exercises
+//
+
 std::string collapseSpaces(std::string s);
 std::vector<std::string> split(std::string s);
 bool isPalindrome(std::string word, int start, int end);
@@ -15,7 +20,7 @@ bool isWordSymmetric(const std::vector<std::string>& words, int start, int end);
 long vectorSum(const std::vector<int>& data, unsigned int position);
 int vectorMin(const std::vector<int>& data, unsigned int position);
 void quickSort(std::vector<int>& data, int start, int end);
-void selectionSort(std::vector<int>& data);
+void selectionSort(std::vector<int>& data, int start, int end);
 
 int main()
 {
@@ -117,11 +122,11 @@ int partition(std::vector<int>& data, int start, int end)
 // ------------------------------------------------------------------
 void selectionSort(std::vector<int>& data, int start, int end)
 {
-    for(start; start < end - 1; start++)
+    for(start; start < end; start++)
     {
         int minPos = start;
 
-        for(int scan = start + 1; scan < end; scan++)
+        for(int scan = start + 1; scan < end + 1; scan++)
         {
             if(data[minPos] > data[scan]){
                 minPos = scan;
